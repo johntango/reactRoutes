@@ -96,7 +96,7 @@ const TodoForm = ({ addTodo }) => {
 const Products = (props) => {
   const [items, setItems] = React.useState(products);
   const [cart, setCart] = React.useState([{ name: "orange" }]);
-
+  const { Card, Accordion, Button, Container, Row, Col } = ReactBootstrap;
   const addToCart = (e) => {
     console.log(e.target.name);
     // remember use of ... - must be inside an array
@@ -127,11 +127,17 @@ const Products = (props) => {
   });
   console.log(list);
   return (
-    <>
-      <h1>Products</h1>
-      <ul style={{ listStyleType: "none" }}>{list}</ul>
-      <ul style={{ listStyleType: "none" }}>{cartList}</ul>
-    </>
+    <Container>
+      <Row>
+        <Col>
+          <ul style={{ listStyleType: "none" }}>{list}</ul>
+        </Col>
+        <Col>
+          <h1>Cart Contents</h1>
+          <ul style={{ listStyleType: "none" }}>{cartList}</ul>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 // ========================================
