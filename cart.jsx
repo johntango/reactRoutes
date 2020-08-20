@@ -70,13 +70,14 @@ const Products = (props) => {
     console.log(`delete index ${x}`);
     setCart(cart.splice(x, 1));
   };
-
+  const photos = ["apple.png", "orange.png", "beans.png", "cabbage.png"];
   let list = products.map((item, index) => {
-    let n = index + 1049;
-    let url = "https://picsum.photos/id/" + n + "/50/50";
+    //let n = index + 1049;
+    //let url = "https://picsum.photos/id/" + n + "/50/50";
+
     return (
       <li key={index}>
-        <Image src={url} roundedCircle></Image>
+        <Image src={photos[index]} width={70} roundedCircle></Image>
         <Button variant="primary" size="large" onClick={addToCart}>
           {item.name}:{item.cost}
         </Button>
@@ -100,9 +101,13 @@ const Products = (props) => {
       </Card>
     );
   });
-  let finalList = cart.map((item) => {
-    return <div>{item.name}</div>;
-  });
+
+  let finalList = () => {
+    let final = cart.map((item) => {
+      return <div>{item.name}</div>;
+    });
+    return final;
+  };
 
   const checkOut = () => {
     let costs = cart.map((item) => item.cost);
@@ -124,7 +129,7 @@ const Products = (props) => {
         <Col>
           <h1>CheckOut </h1>
           <Button onClick={checkOut}>CheckOut $ {total}</Button>
-          <div>{finalList}</div>
+          <div> {total && finalList()} </div>
         </Col>
       </Row>
     </Container>
